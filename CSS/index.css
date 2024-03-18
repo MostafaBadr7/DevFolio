@@ -7,12 +7,6 @@
 * Weather page JS 
 */
 
-/* Import other CSS files*/
-/* <!----------------------------- Bootstrap ----------------------------------> */
-@import url(/Assigns/6-Devolio/css-Bootstrap-Fontawesome/bootstrap.min.css);
-/* <!--------------------------- font awesome ---------------------------------> */
-@import url(/Assigns/6-Devolio/JS-Bootstrap-Fontawesome/all.min.js);
-
 /* Global */
 *,
 *:after,
@@ -145,7 +139,7 @@ header {
   justify-content: center;
   align-items: center;
   background-color: black;
-  background-image: url(/Assigns/6-Devolio/Images/hero-bg.jpg);
+  background-image: url(../Images/hero-bg.jpg);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
