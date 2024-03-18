@@ -1,0 +1,113 @@
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Media 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+@media screen and (max-width: 1000px) {
+  /*............................. Header ..............................*/
+  .nav {
+    padding-right: 0 !important;
+  }
+  .menu-icon {
+    display: block !important;
+    padding-right: 4.5rem !important;
+  }
+  .desktop-ul {
+    display: none !important;
+  }
+  /*............................. Services ..............................*/
+
+  .service-card,
+  .card {
+    width: 100% !important;
+  }
+  .card {
+    margin-inline: 0 !important;
+  }
+  /*............................. blog ..............................*/
+  .blog-card {
+    margin-inline: 0 !important;
+    width: 100% !important;
+  }
+  /*............................. Contact us ..............................*/
+
+  .contact-us-main {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .contact-us-half {
+    width: 100% !important;
+    padding-bottom: 3rem;
+  }
+  .half1 {
+    border-top-left-radius: 1.5rem !important;
+    border-top-right-radius: 1.5rem !important;
+    padding-bottom: 0 !important;
+  }
+  .half2 {
+    border-bottom-left-radius: 1.5rem !important;
+    border-bottom-right-radius: 1.5rem !important;
+  }
+  .email-us {
+    margin-bottom: 1.5rem !important;
+  }
+  .testimonial-2 img {
+    padding-bottom: 0 !important  ;
+    height: auto !important;
+  }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Media 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+@media screen and (max-width: 770px) {
+  /*............................. Header ..............................*/
+  .head-content h1,
+  .head-content p::after {
+    font-size: 2.5rem !important;
+  }
+  nav,
+  .menu-icon {
+    padding: 0 0rem !important;
+  }
+  /*............................. Testimonial ..............................*/
+  .testimonial-2-div {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .testimonial-2 {
+    width: 50% !important;
+    text-align: center;
+  }
+  .testimonial-2 img {
+    padding-bottom: 1rem !important;
+    height: auto;
+  }
+  /*............................. About ..............................*/
+  .name-div {
+    margin-left: 1.1rem !important;
+    width: 50%;
+    margin: auto !important;
+  }
+  /*............................. Statistics ..............................*/
+  .statistics {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Media 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+@media screen and (max-width: 410px) {
+  /* --------------------------- Header --------------------------------------- */
+  .head-content h1,
+  .head-content p::after {
+    font-size: 1.5rem !important;
+  }
+  nav,
+  .menu-icon {
+    padding: 0 !important;
+  }
+  /* --------------------------- About --------------------------------------- */
+  .name-div {
+    padding: 1.1rem !important;
+    width: 100% !important;
+    margin: auto !important;
+  }
+}

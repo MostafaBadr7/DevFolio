@@ -1,0 +1,709 @@
+/*  
+* Route - Frontend
+* JS program Week 9
+* Weather Web APP 
+* JS + Bootstrap + Ajax + APIs
+* 23/12/2023
+* Weather page JS 
+*/
+
+/* Import other CSS files*/
+/* <!----------------------------- Bootstrap ----------------------------------> */
+@import url(/Assigns/6-Devolio/css-Bootstrap-Fontawesome/bootstrap.min.css);
+/* <!--------------------------- font awesome ---------------------------------> */
+@import url(/Assigns/6-Devolio/JS-Bootstrap-Fontawesome/all.min.js);
+
+/* Global */
+*,
+*:after,
+*:before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+:root {
+  --color-hue: 0%;
+  --color-sat: 100%;
+  --color-light: 50%;
+  --main-color: #fff;
+  --sec-color: hsl(var(--color-hue), var(--color-sat), var(--color-light));
+  overflow-x: hidden;
+  --main-bkgrnd-color: #f5f5f5;
+  --container-bkgrnd: #fff;
+  --_10color: rgb(0, 122, 255);
+  --_10color-opacity10: rgba(0, 122, 255, 0.6);
+  --service-margin-inline: 1rem;
+  --statistics-color: #cde1f8;
+  scroll-behavior: smooth;
+}
+/* ................. You can change the main color from here .....................*/
+.custom-danger {
+  background-color: var(--main-color);
+}
+.main-bkgrnd-color {
+  background-color: var(--main-bkgrnd-color);
+}
+.container-bkgrnd {
+  background-color: var(--container-bkgrnd);
+}
+._10color-bkgrnd {
+  background-color: var(--_10color);
+}
+._10color-color {
+  color: var(--_10color);
+}
+.statistics-color {
+  color: var(--statistics-color);
+}
+.text-main-color-white {
+  color: var(--main-color);
+}
+/* nav */
+nav {
+  position: fixed;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem 2rem 0.8rem 7rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999999;
+}
+nav h5 {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding-top: 0.3rem;
+  padding-left: 0.4rem;
+}
+.logo {
+  text-decoration: none;
+}
+nav h5:hover {
+  color: white;
+}
+nav ul {
+  height: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul a {
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 200;
+  padding-top: 0.2rem;
+  transition: font-size 0.5s;
+  position: relative;
+}
+nav ul a:hover {
+  color: var(--main-color);
+}
+.nav-item:hover::after {
+  width: 100%;
+  transition: width 0.5s;
+}
+.nav-item::after,
+.active-link::after {
+  content: " ";
+  width: 0%;
+  height: 3px;
+  background-color: var(--main-color);
+  position: absolute;
+  transition: width 0.5s;
+  top: 100%;
+  left: 0;
+}
+/* body:has(#home:target) .nav-home::after {
+  width: 100%;
+  transition: width 0.5s;
+} */
+.toggle-links a,
+.toggle-links .dropdown {
+  color: black !important;
+  padding-bottom: 10px;
+}
+.desktop-ul {
+  width: 65% !important;
+  margin-right: 2rem;
+  font-size: 0.5rem !important;
+}
+.desktop-ul a {
+  font-size: 1rem !important;
+}
+.active-link::after {
+  width: 100%;
+  transition: width 0.5s;
+}
+/* header */
+header {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  background-image: url(/Assigns/6-Devolio/Images/hero-bg.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+}
+
+.head-content {
+  color: white;
+  text-align: center;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+.head-content h1 {
+  color: #fff;
+  font-size: 4.5rem;
+  font-weight: bold;
+  font-family: "Source Sans Pro", sans-serif;
+  padding-bottom: 1rem;
+}
+
+.head-content p::after {
+  content: "|";
+  animation: 4s typing infinite;
+}
+
+.head-content p {
+  font-size: 2.5rem;
+  font-family: "Source Sans Pro", sans-serif;
+  color: white;
+}
+
+.head-content h3 {
+  padding-bottom: 1rem;
+}
+
+@keyframes typing {
+  0% {
+    content: " |";
+  }
+
+  1% {
+    content: " D|";
+  }
+
+  2% {
+    content: " De|";
+  }
+
+  3% {
+    content: " Dev|";
+  }
+
+  4% {
+    content: " Deve|";
+  }
+
+  5% {
+    content: " Devel|";
+  }
+
+  6% {
+    content: " Develo|";
+  }
+
+  7% {
+    content: " Develop|";
+  }
+
+  8% {
+    content: " Develope|";
+  }
+
+  9% {
+    content: " Developer|";
+  }
+
+  15% {
+    content: " Developer |";
+  }
+
+  30% {
+    content: " Developer |";
+  }
+
+  31% {
+    content: " Develop|";
+  }
+
+  32% {
+    content: " Develo|";
+  }
+
+  33% {
+    content: " Devel|";
+  }
+
+  34% {
+    content: " Deve|";
+  }
+
+  35% {
+    content: " Dev|";
+  }
+
+  36% {
+    content: " De|";
+  }
+
+  37% {
+    content: " D|";
+  }
+
+  38% {
+    content: " |";
+  }
+
+  39% {
+    content: " F|";
+  }
+
+  40% {
+    content: " Fr|";
+  }
+
+  41% {
+    content: " Fre|";
+  }
+
+  42% {
+    content: " Free|";
+  }
+
+  43% {
+    content: " Freel|";
+  }
+
+  44% {
+    content: " Freela|";
+  }
+
+  45% {
+    content: " Freelan|";
+  }
+
+  46% {
+    content: " Freelance|";
+  }
+
+  47% {
+    content: "  Freelancer |";
+  }
+
+  65% {
+    content: " Freelancer |";
+  }
+
+  66% {
+    content: " Freelance|";
+  }
+
+  67% {
+    content: " Freelanc|";
+  }
+
+  68% {
+    content: " Freelan|";
+  }
+
+  69% {
+    content: " Freela|";
+  }
+
+  70% {
+    content: " Freel|";
+  }
+
+  71% {
+    content: " Free|";
+  }
+
+  72% {
+    content: " Fre|";
+  }
+
+  73% {
+    content: " Fr|";
+  }
+
+  74% {
+    content: "|";
+  }
+
+  100% {
+    content: "|";
+  }
+}
+
+/* <!------------------------------ About me ---------------------------- --> */
+.line {
+  width: 20%;
+  height: 3px;
+  background-color: var(--_10color);
+}
+/* <!------------------------------ Services ---------------------------- --> */
+.services-line {
+  width: 5%;
+  height: 3px;
+  background-color: var(--_10color);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.service-card-img-top {
+  width: 100px;
+  height: 100px;
+  transition: background-color 0.3s ease-in-out;
+}
+.service-outer-line {
+  width: 130px;
+  height: 130px;
+  background-color: var(--_10color);
+}
+.service-card:hover .service-card-img-top {
+  background-color: var(--_10color) !important;
+}
+.service-card:hover .service-icons {
+  color: white !important;
+}
+.service-card:hover .service-outer-line {
+  background-color: #cde1f8 !important;
+}
+.service-card {
+  width: calc(calc(100% / 3) - calc(var(--service-margin-inline))) !important;
+}
+
+/* <!------------------------------ Statistics ---------------------------- --> */
+.statistics {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  margin: auto;
+  text-align: center;
+  padding: 6rem 0rem 3rem 0;
+  background-image: linear-gradient(
+      var(--_10color-opacity10),
+      var(--_10color-opacity10)
+    ),
+    url(/Assigns/6-Devolio/Images/counters-bg.jpg);
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fa-mug-saucer,
+.fa-cloud-arrow-down,
+.fa-file,
+.fa-users {
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-color: #cde1f8;
+}
+.static-fig-circle {
+  width: 40px;
+  height: 40px;
+  box-shadow: 0px 0px 0 10px #cde1f8;
+}
+
+.statistics figcaption {
+  font-size: 1.5rem;
+  font-weight: 800;
+  padding-bottom: 1rem;
+}
+
+.statistics p {
+  font-size: 1.5rem;
+}
+
+.feature1 figcaption::after {
+  content: "";
+  animation: numbers infinite 3s;
+}
+
+@keyframes numbers {
+  0% {
+    content: "0";
+  }
+
+  10% {
+    content: "20";
+  }
+
+  20% {
+    content: "50";
+  }
+
+  30% {
+    content: "90";
+  }
+
+  40% {
+    content: "120";
+  }
+
+  50% {
+    content: "150";
+  }
+
+  60% {
+    content: "180";
+  }
+
+  70% {
+    content: "200";
+  }
+
+  80% {
+    content: "250";
+  }
+
+  90% {
+    content: "300";
+  }
+
+  100% {
+    content: "450";
+  }
+}
+
+.feature2 figcaption::after {
+  content: "";
+  animation: projects infinite 4s;
+}
+
+@keyframes projects {
+  0% {
+    content: "0";
+  }
+
+  20% {
+    content: "5";
+  }
+
+  40% {
+    content: "9";
+  }
+
+  60% {
+    content: "18";
+  }
+
+  80% {
+    content: "22";
+  }
+
+  100% {
+    content: "25";
+  }
+}
+
+.feature3 figcaption::after {
+  content: "";
+  animation: files infinite 4s;
+}
+
+@keyframes files {
+  0% {
+    content: "0";
+  }
+
+  15% {
+    content: "32";
+  }
+
+  30% {
+    content: "81";
+  }
+
+  45% {
+    content: "167";
+  }
+
+  60% {
+    content: "270";
+  }
+
+  75% {
+    content: "390";
+  }
+
+  90% {
+    content: "430";
+  }
+
+  100% {
+    content: "550";
+  }
+}
+
+.feature4 figcaption::after {
+  content: "";
+  animation: lines infinite 5s;
+}
+
+@keyframes lines {
+  0% {
+    content: "0";
+  }
+
+  15% {
+    content: "4";
+  }
+
+  30% {
+    content: "10";
+  }
+
+  45% {
+    content: "12";
+  }
+
+  60% {
+    content: "16";
+  }
+
+  75% {
+    content: "21";
+  }
+
+  90% {
+    content: "39";
+  }
+
+  100% {
+    content: "48";
+  }
+}
+/* <!------------------------------ portfolio ---------------------------- --> */
+.portfolio-add-icon {
+  width: 20px;
+  height: 30px;
+}
+.portfolio-card-img-div {
+  overflow: hidden;
+}
+.card-img-top {
+  transition: transform 1s;
+}
+.card:hover .card-img-top {
+  transform: scale(1.5, 1.5);
+}
+.card {
+  width: calc(calc(100% / 3) - calc(var(--service-margin-inline))) !important;
+}
+/* <!------------------------------ Testiminolias ---------------------------- --> */
+
+.carousel-indicators [data-bs-target] {
+  border-radius: 50% !important;
+  height: 15px !important;
+  width: 15px !important;
+}
+.testimonial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin: auto;
+  text-align: center;
+  padding: 6rem 0rem 3rem 0;
+  background-image: linear-gradient(
+      var(--_10color-opacity10),
+      var(--_10color-opacity10)
+    ),
+    url(/Assigns/6-Devolio/Images/overlay-bg.jpg);
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* <!------------------------------ BLOG ---------------------------- --> */
+.blog-add-icon {
+  width: 20px;
+  height: 30px;
+}
+.blog-card-img-div {
+  overflow: hidden;
+}
+.blog-card-img-top {
+  transition: transform 1s;
+}
+.blog-card:hover .blog-card-img-top {
+  transform: scale(1.5, 1.5);
+}
+.blog-card {
+  width: calc(calc(100% / 3) - calc(var(--service-margin-inline))) !important;
+}
+.blog-categ-capsule {
+  position: relative;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+}
+.blog-owner-img {
+  width: 10%;
+}
+/* <!------------------------------ Contact us ---------------------------- --> */
+.contact-icon-circle {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0 3px var(--_10color);
+}
+.contact-icon-circle:hover {
+  width: 40px;
+  height: 40px;
+  box-shadow: 0px 0px 0 3px #cde1f8;
+  background-color: var(--_10color);
+}
+.contact-icon-circle:hover .contact-icon {
+  color: #fff !important;
+}
+.contact-us-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  margin: auto;
+  text-align: center;
+  padding: 6rem 0rem 3rem 0;
+  background-image: linear-gradient(
+      var(--_10color-opacity10),
+      var(--_10color-opacity10)
+    ),
+    url(/Assigns/6-Devolio/Images/overlay-bg.jpg);
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* box-shadow: 0 13px 8px -10px rgb(0 0 0 / 10%); */
+  box-shadow: 5px 100px 100px 10px #000;
+}
+.line-contact-section {
+  width: 3rem !important;
+}
+
+/* <!------------------------------ Footer ---------------------------- --> */
+
+section {
+  width: 100vw;
+}
+.footer {
+  background-color: #0062d3;
+  color: var(--main-color) !important;
+}
